@@ -1,0 +1,8 @@
+{
+  "beacon_base": {
+    "block": "minecraft:iron_block"
+  },
+  "beacon_effects": [
+    "minecraft:resistance"
+  ]
+}
