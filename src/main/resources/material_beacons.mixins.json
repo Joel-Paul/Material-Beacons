@@ -2,9 +2,8 @@
   "required": true,
   "minVersion": "0.8",
   "package": "issame.material_beacons.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BeaconBlockMixin"
   ],
   "client": [
   ],
