@@ -6,10 +6,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.ActionResult;
 
 public class MaterialBeacons implements ModInitializer {
+    public static final String MOD_ID = "material_beacons";
+
     @Override
     public void onInitialize() {
-        System.out.println("Hello Fabric world!");
         disableBeaconGUI();
+        DatapackLoader.register();
+        System.out.println("Material Beacons initialized!");
     }
 
     private void disableBeaconGUI() {
