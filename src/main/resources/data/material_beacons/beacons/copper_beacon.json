@@ -1,6 +1,7 @@
 {
   "base": [
-    "#c:copper_blocks"
+    "#c:copper_blocks",
+    "minecraft:coal_block"
   ],
   "powers": [
     [

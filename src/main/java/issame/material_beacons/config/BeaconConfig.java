@@ -1,6 +1,5 @@
 package issame.material_beacons.config;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
@@ -21,9 +20,15 @@ public class BeaconConfig {
         return powers;
     }
 
-    public List<TagKey<Block>> getBaseTags() {
+    public List<BlockOrTag> getBaseTags() {
         return base.stream()
-                .map(tag -> TagKey.of(RegistryKeys.BLOCK, new Identifier(tag.substring(1))))
+                .map(tag -> {
+                    if (tag.startsWith("#")) {
+                        return new BlockOrTag(TagKey.of(RegistryKeys.BLOCK, Identifier.tryParse(tag.substring(1))));
+                    } else {
+                        return new BlockOrTag(Registries.BLOCK.get(Identifier.tryParse(tag)));
+                    }
+                })
                 .toList();
     }
 
