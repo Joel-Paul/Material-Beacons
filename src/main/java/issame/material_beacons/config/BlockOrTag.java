@@ -23,12 +23,20 @@ public class BlockOrTag {
         return tag != null;
     }
 
+    public boolean has(Block other) {
+        if (isBlock()) {
+            return other == block;
+        } else {
+            return other.getRegistryEntry().isIn(tag);
+        }
+    }
+
     @Override
     public String toString() {
         if (isBlock()) {
-            return "Block: " + block;
+            return block.toString();
         } else {
-            return "Tag: " + tag;
+            return tag.toString();
         }
     }
 }

@@ -3,11 +3,14 @@ package issame.material_beacons;
 import com.google.gson.Gson;
 import issame.material_beacons.config.BeaconConfig;
 import issame.material_beacons.config.BeaconData;
+import issame.material_beacons.config.BlockOrTag;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
+import net.minecraft.block.Block;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +46,19 @@ public class DatapackLoader {
         });
     }
 
-    public static HashSet<BeaconData> getBeaconConfigs() {
+    public static HashSet<BeaconData> getBeaconData() {
         return beaconData;
+    }
+
+    @Nullable
+    public static BeaconData findMatchingData(Block block) {
+        for (BeaconData data : beaconData) {
+            for (BlockOrTag blockOrTag : data.getBase()) {
+                if (blockOrTag.has(block)) {
+                    return data;
+                }
+            }
+        }
+        return null;
     }
 }
