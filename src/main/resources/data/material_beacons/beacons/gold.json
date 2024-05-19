@@ -1,0 +1,39 @@
+{
+  "base": [
+    "minecraft:gold_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:haste",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:haste",
+        "duration": 13,
+        "amplifier": 1,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:haste",
+        "duration": 15,
+        "amplifier": 2,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:haste",
+        "duration": 17,
+        "amplifier": 3,
+        "range": 50
+      }
+    ]
+  ]
+}

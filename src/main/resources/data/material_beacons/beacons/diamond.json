@@ -1,0 +1,39 @@
+{
+  "base": [
+    "minecraft:diamond_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:strength",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:strength",
+        "duration": 13,
+        "amplifier": 1,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:strength",
+        "duration": 15,
+        "amplifier": 2,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:strength",
+        "duration": 17,
+        "amplifier": 3,
+        "range": 50
+      }
+    ]
+  ]
+}

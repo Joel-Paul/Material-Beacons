@@ -23,7 +23,10 @@ public class BeaconConfig {
     public List<BlockOrTag> getBaseTags() {
         return base.stream()
                 .map(tag -> {
-                    if (tag.startsWith("#")) {
+                    if (tag == null) {
+                        System.out.println("Null tag in base" + base);
+                        return null;
+                    } else if (tag.startsWith("#")) {
                         return new BlockOrTag(TagKey.of(RegistryKeys.BLOCK, Identifier.tryParse(tag.substring(1))));
                     } else {
                         return new BlockOrTag(Registries.BLOCK.get(Identifier.tryParse(tag)));
@@ -37,8 +40,18 @@ public class BeaconConfig {
                 .map(list -> list.stream()
                         .map(config -> new StatusEffectInstance(
                                 Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(config.getEffect())).orElse(null),
-                                config.getDuration(),
-                                config.getAmplifier()))
+                                config.getDuration() * 20,
+                                config.getAmplifier(),
+                                true,
+                                true))
+                        .toList())
+                .toList();
+    }
+
+    public List<List<Double>> getEffectRanges() {
+        return powers.stream()
+                .map(list -> list.stream()
+                        .map(EffectConfig::getRange)
                         .toList())
                 .toList();
     }
@@ -47,7 +60,7 @@ public class BeaconConfig {
         private String effect;
         private int duration;
         private int amplifier;
-        private int range;
+        private double range;
 
         public String getEffect() {
             return effect;
@@ -61,7 +74,7 @@ public class BeaconConfig {
             return amplifier;
         }
 
-        public int getRange() {
+        public double getRange() {
             return range;
         }
     }
