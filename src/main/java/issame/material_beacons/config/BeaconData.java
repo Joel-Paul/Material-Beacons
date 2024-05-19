@@ -11,15 +11,6 @@ public class BeaconData {
     public BeaconData(BeaconConfig config) {
         base = config.getBaseTags();
         powers = config.getPowerEffects();
-
-        for (BlockOrTag blockOrTag : base) {
-            System.out.println("Base tag: " + blockOrTag);
-        }
-        for (List<StatusEffectInstance> list : powers) {
-            for (StatusEffectInstance effect : list) {
-                System.out.println("Effect: " + effect);
-            }
-        }
     }
 
     public List<BlockOrTag> getBase() {
@@ -28,5 +19,13 @@ public class BeaconData {
 
     public List<List<StatusEffectInstance>> getPowers() {
         return powers;
+    }
+
+    @Override
+    public String toString() {
+        return "BeaconData{" +
+                "base=" + base +
+                ", powers=" + powers +
+                '}';
     }
 }
