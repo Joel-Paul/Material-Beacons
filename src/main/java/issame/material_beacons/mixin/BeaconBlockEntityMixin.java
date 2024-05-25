@@ -21,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
+import static issame.material_beacons.MaterialBeacons.MAX_LEVEL;
+
 @Mixin(BeaconBlockEntity.class)
 public class BeaconBlockEntityMixin {
     @Inject(at = @At("HEAD"), method = "updateLevel", cancellable = true)
@@ -35,7 +37,7 @@ public class BeaconBlockEntityMixin {
 
         // Verify that the beacon pyramid is using a valid base
         int currentLevel = 0;
-        for (int level = 1; level <= 8; level++) {
+        for (int level = 1; level <= MAX_LEVEL; level++) {
             if (y - level < world.getBottomY()) {
                 break;
             }
@@ -44,7 +46,7 @@ public class BeaconBlockEntityMixin {
                 for (int j = z - level; (j <= z + level) && !nextBases.isEmpty(); j++) {
                     Block block = world.getBlockState(new BlockPos(i, y - level, j)).getBlock();
                     nextBases = bases.stream()
-                            .filter(data -> data.getBase().stream()
+                            .filter(data -> data.getBases().stream()
                                     .anyMatch(blockOrTag -> blockOrTag.has(block)))
                             .toList();
                 }
@@ -56,9 +58,10 @@ public class BeaconBlockEntityMixin {
             bases = nextBases;
         }
 
-        // Apply the effects of the beacon base
-        if (currentLevel > 0) {
-            applyPlayerEffects(world, pos, currentLevel, bases.get(0));
+        if (currentLevel > 0 && !bases.isEmpty()) {
+            // Apply the effects of a beacon base.
+            BeaconData base = bases.get(0);
+            applyPlayerEffects(world, pos, currentLevel, base);
         }
 
         cir.setReturnValue(currentLevel);
@@ -71,12 +74,12 @@ public class BeaconBlockEntityMixin {
 
     @Unique
     private static void applyPlayerEffects(World world, BlockPos pos, int level, BeaconData base) {
-        if (world.isClient) {
+        if (world.isClient || base.getAllPowers().isEmpty()) {
             return;
         }
 
-        List<StatusEffectInstance> effects = base.getPowers().get(level - 1);
-        List<Double> ranges = base.getRanges().get(level - 1);
+        List<StatusEffectInstance> effects = base.getPowers(level);
+        List<Double> ranges = base.getRanges(level);
 
         for (int i = 0; i < effects.size(); i++) {
             StatusEffectInstance effect = effects.get(i);

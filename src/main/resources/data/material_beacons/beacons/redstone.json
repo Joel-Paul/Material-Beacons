@@ -1,5 +1,5 @@
 {
-  "base": [
+  "bases": [
     "minecraft:redstone_block"
   ],
   "powers": [

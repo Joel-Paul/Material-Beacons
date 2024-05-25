@@ -7,6 +7,7 @@ import net.minecraft.util.ActionResult;
 
 public class MaterialBeacons implements ModInitializer {
     public static final String MOD_ID = "material_beacons";
+    public static int MAX_LEVEL = 4;
 
     @Override
     public void onInitialize() {

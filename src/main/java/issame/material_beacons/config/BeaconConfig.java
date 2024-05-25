@@ -9,11 +9,11 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class BeaconConfig {
-    private List<String> base;
+    private List<String> bases;
     private List<List<EffectConfig>> powers;
 
-    public List<String> getBase() {
-        return base;
+    public List<String> getBases() {
+        return bases;
     }
 
     public List<List<EffectConfig>> getPowers() {
@@ -21,10 +21,10 @@ public class BeaconConfig {
     }
 
     public List<BlockOrTag> getBaseTags() {
-        return base.stream()
+        return bases.stream()
                 .map(tag -> {
                     if (tag == null) {
-                        System.out.println("Null tag in base" + base);
+                        System.out.println("Null tag in bases: " + bases);
                         return null;
                     } else if (tag.startsWith("#")) {
                         return new BlockOrTag(TagKey.of(RegistryKeys.BLOCK, Identifier.tryParse(tag.substring(1))));

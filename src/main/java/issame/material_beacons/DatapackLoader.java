@@ -56,7 +56,7 @@ public class DatapackLoader {
     public static List<BeaconData> findMatchingData(Block block) {
         List<BeaconData> matching = new LinkedList<>();
         for (BeaconData data : beaconData) {
-            for (BlockOrTag blockOrTag : data.getBase()) {
+            for (BlockOrTag blockOrTag : data.getBases()) {
                 if (blockOrTag.has(block)) {
                     matching.add(data);
                 }
