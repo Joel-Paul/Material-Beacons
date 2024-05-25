@@ -15,7 +15,7 @@
       {
         "effect": "minecraft:slow_falling",
         "duration": 13,
-        "amplifier": 1,
+        "amplifier": 0,
         "range": 30
       }
     ],
@@ -23,7 +23,7 @@
       {
         "effect": "minecraft:slow_falling",
         "duration": 15,
-        "amplifier": 2,
+        "amplifier": 0,
         "range": 40
       }
     ],
@@ -31,7 +31,7 @@
       {
         "effect": "minecraft:slow_falling",
         "duration": 17,
-        "amplifier": 3,
+        "amplifier": 0,
         "range": 50
       }
     ]
