@@ -15,15 +15,16 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static issame.material_beacons.MaterialBeacons.MOD_ID;
 
 public class DatapackLoader {
     private static final Gson GSON = new Gson();
-    private static final HashSet<BeaconData> beaconData = new HashSet<>();
+    private static final Map<Identifier, BeaconData> beaconData = new HashMap<>();
 
     public static void register() {
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
@@ -39,7 +40,7 @@ public class DatapackLoader {
                     try (InputStream stream = resource.getInputStream()) {
                         InputStreamReader reader = new InputStreamReader(stream);
                         BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
-                        beaconData.add(new BeaconData(config));
+                        beaconData.put(id, new BeaconData(config));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -48,14 +49,14 @@ public class DatapackLoader {
         });
     }
 
-    public static HashSet<BeaconData> getBeaconData() {
+    public static Map<Identifier, BeaconData> getBeaconData() {
         return beaconData;
     }
 
     @Nullable
     public static List<BeaconData> findMatchingData(Block block) {
         List<BeaconData> matching = new LinkedList<>();
-        for (BeaconData data : beaconData) {
+        for (BeaconData data : beaconData.values()) {
             for (BlockOrTag blockOrTag : data.getBases()) {
                 if (blockOrTag.has(block)) {
                     matching.add(data);
