@@ -7,24 +7,17 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.Objects;
 
-public class BeaconConfig {
-    private List<String> bases;
-    private List<List<EffectConfig>> powers;
+import static issame.material_beacons.MaterialBeacons.LOGGER;
 
-    public List<String> getBases() {
-        return bases;
-    }
-
-    public List<List<EffectConfig>> getPowers() {
-        return powers;
-    }
+public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) {
 
     public List<BlockOrTag> getBaseTags() {
         return bases.stream()
                 .map(tag -> {
                     if (tag == null) {
-                        System.out.println("Null tag in bases: " + bases);
+                        LOGGER.warn("Null value found in bases: {}", bases);
                         return null;
                     } else if (tag.startsWith("#")) {
                         return new BlockOrTag(TagKey.of(RegistryKeys.BLOCK, Identifier.tryParse(tag.substring(1))));
@@ -32,18 +25,26 @@ public class BeaconConfig {
                         return new BlockOrTag(Registries.BLOCK.get(Identifier.tryParse(tag)));
                     }
                 })
+                .filter(Objects::nonNull)
                 .toList();
     }
 
     public List<List<StatusEffectInstance>> getPowerEffects() {
         return powers.stream()
                 .map(list -> list.stream()
-                        .map(config -> new StatusEffectInstance(
-                                Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(config.getEffect())).orElse(null),
-                                config.getDuration() * 20,
-                                config.getAmplifier(),
-                                true,
-                                true))
+                        .map(config -> {
+                            if (config.effect() == null || config.duration() == null || config.amplifier() == null) {
+                                LOGGER.warn("Null value found in powers: {}", config);
+                                return null;
+                            }
+                            return new StatusEffectInstance(
+                                    Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(config.effect())).orElse(null),
+                                    config.duration() * 20,
+                                    config.amplifier(),
+                                    true,
+                                    true);
+                        })
+                        .filter(Objects::nonNull)
                         .toList())
                 .toList();
     }
@@ -51,31 +52,18 @@ public class BeaconConfig {
     public List<List<Double>> getEffectRanges() {
         return powers.stream()
                 .map(list -> list.stream()
-                        .map(EffectConfig::getRange)
+                        .map(config -> {
+                            if (config.range() == null) {
+                                LOGGER.warn("Null range found in powers: {}", config);
+                                return null;
+                            }
+                            return config.range();
+                        })
+                        .filter(Objects::nonNull)
                         .toList())
                 .toList();
     }
 
-    public static class EffectConfig {
-        private String effect;
-        private int duration;
-        private int amplifier;
-        private double range;
-
-        public String getEffect() {
-            return effect;
-        }
-
-        public int getDuration() {
-            return duration;
-        }
-
-        public int getAmplifier() {
-            return amplifier;
-        }
-
-        public double getRange() {
-            return range;
-        }
+    public record EffectConfig(String effect, Integer duration, Integer amplifier, Double range) {
     }
 }

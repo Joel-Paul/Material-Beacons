@@ -12,7 +12,6 @@ import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -20,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static issame.material_beacons.MaterialBeacons.LOGGER;
 import static issame.material_beacons.MaterialBeacons.MOD_ID;
 
 public class DatapackLoader {
@@ -41,16 +41,13 @@ public class DatapackLoader {
                         InputStreamReader reader = new InputStreamReader(stream);
                         BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
                         beaconData.put(id, new BeaconData(config));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        LOGGER.warn("Failed to load beacon data from %s!".formatted(id), e);
                     }
                 });
+                LOGGER.info("Loaded %d beacons".formatted(beaconData.size()));
             }
         });
-    }
-
-    public static Map<Identifier, BeaconData> getBeaconData() {
-        return beaconData;
     }
 
     @Nullable

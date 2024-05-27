@@ -10,12 +10,20 @@ public class BeaconData {
     private final List<List<Double>> ranges;
 
     public BeaconData(BeaconConfig config) {
+        if (config == null) {
+            throw new IllegalArgumentException("Unable to parse beacon data");
+        }
         bases = config.getBaseTags();
         powers = config.getPowerEffects();
         ranges = config.getEffectRanges();
 
         if (powers.size() != ranges.size()) {
-            System.out.println("WARNING: Powers and ranges must have the same number of levels!");
+            throw new IllegalArgumentException("Powers and ranges must have the same size!");
+        }
+        for (int i = 0; i < powers.size(); i++) {
+            if (powers.get(i).size() != ranges.get(i).size()) {
+                throw new IllegalArgumentException("Each power must have an associated range!");
+            }
         }
     }
 
@@ -25,10 +33,6 @@ public class BeaconData {
 
     public List<List<StatusEffectInstance>> getAllPowers() {
         return powers;
-    }
-
-    public List<List<Double>> getAllRanges() {
-        return ranges;
     }
 
     public int getMaxLevel() {
