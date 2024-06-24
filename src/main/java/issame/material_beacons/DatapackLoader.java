@@ -30,13 +30,13 @@ public class DatapackLoader {
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
             @Override
             public Identifier getFabricId() {
-                return new Identifier(MOD_ID, "beacons");
+                return Identifier.of(MOD_ID, "beacon");
             }
 
             @Override
             public void reload(ResourceManager manager) {
                 beaconData.clear();
-                manager.findResources("beacons", path -> path.getPath().endsWith(".json")).forEach((id, resource) -> {
+                manager.findResources("beacon", path -> path.getPath().endsWith(".json")).forEach((id, resource) -> {
                     try (InputStream stream = resource.getInputStream()) {
                         InputStreamReader reader = new InputStreamReader(stream);
                         BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
