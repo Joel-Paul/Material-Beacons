@@ -37,7 +37,7 @@ The example json below creates a beacon using wool and/or clay with two tiers of
 - Tier 1: Blindness and Nausea
 - Tier 2: Regeneration III
 
-(`/data/[namespace]/beacons/wool_clay.json`)
+(`/data/[namespace]/beacon/wool_clay.json`)
 ```json
 {
   "bases": [
