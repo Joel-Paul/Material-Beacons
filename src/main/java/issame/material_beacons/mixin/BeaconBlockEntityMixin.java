@@ -60,7 +60,7 @@ public class BeaconBlockEntityMixin {
 
         if (currentLevel > 0 && !bases.isEmpty()) {
             // Apply the effects of a beacon base.
-            BeaconData base = bases.get(0);
+            BeaconData base = bases.getFirst();
             applyPlayerEffects(world, pos, currentLevel, base);
         }
 
