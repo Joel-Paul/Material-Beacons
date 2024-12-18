@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.1+1.20.1
+- Backport to Minecraft 1.20.1
+
 ## v1.0.1+1.21.3
 - Update to Minecraft 1.21.3
 

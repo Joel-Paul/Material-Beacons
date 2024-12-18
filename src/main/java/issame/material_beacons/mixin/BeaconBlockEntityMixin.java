@@ -7,11 +7,9 @@ import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -60,7 +58,7 @@ public class BeaconBlockEntityMixin {
 
         if (currentLevel > 0 && !bases.isEmpty()) {
             // Apply the effects of a beacon base.
-            BeaconData base = bases.get(0);
+            BeaconData base = bases.getFirst();
             applyPlayerEffects(world, pos, currentLevel, base);
         }
 
@@ -68,7 +66,7 @@ public class BeaconBlockEntityMixin {
     }
 
     @Inject(at = @At("HEAD"), method = "applyPlayerEffects", cancellable = true)
-    private static void applyPlayerEffects(World world, BlockPos pos, int beaconLevel, @Nullable RegistryEntry<StatusEffect> primaryEffect, @Nullable RegistryEntry<StatusEffect> secondaryEffect, CallbackInfo ci) {
+    private static void applyPlayerEffects(World world, BlockPos pos, int beaconLevel, StatusEffect primaryEffect, StatusEffect secondaryEffect, CallbackInfo ci) {
         ci.cancel();
     }
 

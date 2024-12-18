@@ -38,7 +38,7 @@ public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) 
                                 return null;
                             }
                             return new StatusEffectInstance(
-                                    Registries.STATUS_EFFECT.getEntry(Identifier.tryParse(config.effect())).orElse(null),
+                                    Objects.requireNonNull(Registries.STATUS_EFFECT.get(Identifier.tryParse(config.effect()))),
                                     config.duration() * 20,
                                     config.amplifier(),
                                     true,
