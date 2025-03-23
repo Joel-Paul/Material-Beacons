@@ -11,9 +11,9 @@ from the
 mod.
 
 ## Download
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Joel-Paul/Material-Beacons/total?logo=github)](https://github.com/Joel-Paul/Material-Beacons/releases/latest)
-[![Modrinth](https://img.shields.io/modrinth/dt/QLLz3XcD?logo=modrinth)](https://modrinth.com/mod/material-beacons)
-[![CurseForge](https://img.shields.io/curseforge/dt/1025875?style=flat&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/material-beacons)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Joel-Paul/Material-Beacons/total?logo=github&label=GitHub)](https://github.com/Joel-Paul/Material-Beacons/releases/latest)
+[![Modrinth](https://img.shields.io/modrinth/dt/QLLz3XcD?logo=modrinth&label=Modrinth)](https://modrinth.com/mod/material-beacons)
+[![CurseForge](https://img.shields.io/curseforge/dt/1025875?style=flat&logo=curseforge&label=CurseForge)](https://www.curseforge.com/minecraft/mc-mods/material-beacons)
 
 ## Current Materials and Effects
 | Block     | Effect          |
