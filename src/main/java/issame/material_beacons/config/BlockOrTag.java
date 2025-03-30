@@ -1,6 +1,8 @@
 package issame.material_beacons.config;
 
 import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 
 public class BlockOrTag {
@@ -27,7 +29,8 @@ public class BlockOrTag {
         if (isBlock()) {
             return other == block;
         } else {
-            return other.getRegistryEntry().isIn(tag);
+            RegistryEntry<Block> entry = Registries.BLOCK.getEntry(other);
+            return entry != null && entry.isIn(tag);
         }
     }
 
