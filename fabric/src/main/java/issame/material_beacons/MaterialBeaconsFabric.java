@@ -4,20 +4,17 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.Blocks;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class MaterialBeacons implements ModInitializer {
-    public static final String MOD_ID = "material_beacons";
-    public static final Logger LOGGER = LogManager.getLogger();
-    public static int MAX_LAYER = 4;
+import static issame.material_beacons.Constants.LOG;
+
+public class MaterialBeaconsFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Initializing Material Beacons...");
+        LOG.info("Initializing Material Beacons...");
         disableBeaconGUI();
         DatapackLoader.register();
-        LOGGER.info("Material Beacons initialized!");
+        LOG.info("Material Beacons initialized!");
     }
 
     private void disableBeaconGUI() {

@@ -16,7 +16,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "issame.material_beacons.MaterialBeacons"
+            "issame.material_beacons.MaterialBeaconsFabric"
         ]
     },
     "mixins": [

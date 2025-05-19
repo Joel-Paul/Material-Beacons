@@ -8,4 +8,6 @@ public class Constants {
 	public static final String MOD_ID = "material_beacons";
 	public static final String MOD_NAME = "Material Beacons";
 	public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+
+	public static final int MAX_LAYER = 4;
 }

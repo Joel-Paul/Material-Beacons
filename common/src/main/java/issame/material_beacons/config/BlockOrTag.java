@@ -20,10 +20,6 @@ public class BlockOrTag {
         return block != null;
     }
 
-    public boolean isTag() {
-        return tag != null;
-    }
-
     public boolean has(Block other) {
         if (isBlock()) {
             return other.defaultBlockState().is(block);
