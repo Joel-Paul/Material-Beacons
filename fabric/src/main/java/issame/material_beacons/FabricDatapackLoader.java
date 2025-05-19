@@ -18,7 +18,7 @@ import java.util.Map;
 import static issame.material_beacons.Constants.LOG;
 import static issame.material_beacons.Constants.MOD_ID;
 
-public class DatapackLoader {
+public class FabricDatapackLoader {
     private static final Gson GSON = new Gson();
     private static final Map<ResourceLocation, BeaconData> beaconData = new HashMap<>();
 
@@ -32,13 +32,13 @@ public class DatapackLoader {
             @Override
             public void onResourceManagerReload(ResourceManager resourceManager) {
                 beaconData.clear();
-                resourceManager.listResources("beacon", path -> path.getPath().endsWith(".json")).forEach((id, resource) -> {
+                resourceManager.listResources("beacon", path -> path.getPath().endsWith(".json")).forEach((resourceLocation, resource) -> {
                     try (InputStream stream = resource.open()) {
                         InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
                         BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
-                        beaconData.put(id, new BeaconData(config));
+                        beaconData.put(resourceLocation, new BeaconData(config));
                     } catch (Exception e) {
-                        LOG.warn("Failed to load beacon data from {}!\n{}", id, e);
+                        LOG.warn("Failed to load beacon data from {}!\n{}", resourceLocation, e);
                     }
                 });
             }

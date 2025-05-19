@@ -1,6 +1,8 @@
 package issame.material_beacons.config;
 
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +18,19 @@ import java.util.Objects;
 import static issame.material_beacons.Constants.LOG;
 
 public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) {
+    public static final Codec<BeaconConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.list(Codec.STRING).fieldOf("bases").forGetter(BeaconConfig::bases),
+            Codec.list(Codec.list(EffectConfig.CODEC)).fieldOf("powers").forGetter(BeaconConfig::powers)
+    ).apply(instance, BeaconConfig::new));
+
+    public record EffectConfig(String effect, Integer duration, Integer amplifier, Double range) {
+        public static final Codec<EffectConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                Codec.STRING.fieldOf("effect").forGetter(EffectConfig::effect),
+                Codec.INT.optionalFieldOf("duration", 11).forGetter(EffectConfig::duration),
+                Codec.INT.optionalFieldOf("amplifier", 0).forGetter(EffectConfig::amplifier),
+                Codec.DOUBLE.optionalFieldOf("range", 20.0).forGetter(EffectConfig::range)
+        ).apply(instance, EffectConfig::new));
+    }
 
     public List<BlockOrTag> getBaseTags() {
         return bases.stream()
@@ -78,8 +93,5 @@ public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) 
             return null;
         }
         return TagKey.create(Registries.BLOCK, resourceLocation);
-    }
-
-    public record EffectConfig(String effect, Integer duration, Integer amplifier, Double range) {
     }
 }

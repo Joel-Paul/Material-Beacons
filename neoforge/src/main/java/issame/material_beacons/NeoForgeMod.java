@@ -9,9 +9,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 @Mod(Constants.MOD_ID)
-public class MaterialBeaconsNeoForge {
-    public MaterialBeaconsNeoForge(IEventBus eventBus) {
-        MaterialBeaconsCommon.init();
+public class NeoForgeMod {
+    public NeoForgeMod(IEventBus eventBus) {
+        CommonMod.init();
     }
 
     @EventBusSubscriber(modid = Constants.MOD_ID)

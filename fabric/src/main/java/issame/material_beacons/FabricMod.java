@@ -7,13 +7,13 @@ import net.minecraft.world.level.block.Blocks;
 
 import static issame.material_beacons.Constants.LOG;
 
-public class MaterialBeaconsFabric implements ModInitializer {
+public class FabricMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
         LOG.info("Initializing Material Beacons...");
         disableBeaconGUI();
-        DatapackLoader.register();
+        FabricDatapackLoader.register();
         LOG.info("Material Beacons initialized!");
     }
 

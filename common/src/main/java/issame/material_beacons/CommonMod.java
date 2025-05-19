@@ -1,7 +1,7 @@
 package issame.material_beacons;
 
 
-public class MaterialBeaconsCommon {
+public class CommonMod {
     public static void init() {
     }
 }
