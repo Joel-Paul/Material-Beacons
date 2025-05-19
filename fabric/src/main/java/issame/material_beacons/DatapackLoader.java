@@ -11,6 +11,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class DatapackLoader {
                 beaconData.clear();
                 resourceManager.listResources("beacon", path -> path.getPath().endsWith(".json")).forEach((id, resource) -> {
                     try (InputStream stream = resource.open()) {
-                        InputStreamReader reader = new InputStreamReader(stream);
+                        InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
                         BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
                         beaconData.put(id, new BeaconData(config));
                     } catch (Exception e) {
