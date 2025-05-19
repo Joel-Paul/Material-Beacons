@@ -1,0 +1,39 @@
+{
+  "bases": [
+    "minecraft:emerald_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:luck",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:luck",
+        "duration": 13,
+        "amplifier": 1,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:luck",
+        "duration": 15,
+        "amplifier": 2,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:luck",
+        "duration": 17,
+        "amplifier": 3,
+        "range": 50
+      }
+    ]
+  ]
+}

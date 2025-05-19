@@ -1,0 +1,39 @@
+{
+  "bases": [
+    "#c:copper_blocks"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:water_breathing",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:water_breathing",
+        "duration": 13,
+        "amplifier": 0,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:water_breathing",
+        "duration": 15,
+        "amplifier": 0,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:water_breathing",
+        "duration": 17,
+        "amplifier": 0,
+        "range": 50
+      }
+    ]
+  ]
+}
