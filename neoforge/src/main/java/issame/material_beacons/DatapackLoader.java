@@ -20,15 +20,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static issame.material_beacons.Constants.LOG;
+import static issame.material_beacons.Constants.MOD_ID;
 
-@EventBusSubscriber(modid = Constants.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
-public class NeoForgeDatapackLoader {
+@EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+public class DatapackLoader {
     private static final Gson GSON = new Gson();
     private static final Map<ResourceLocation, BeaconData> beaconData = new HashMap<>();
 
     @SubscribeEvent
     public static void onReload(AddServerReloadListenersEvent event) {
-        event.addListener(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "beacon"), new SimpleJsonResourceReloadListener<>(BeaconConfig.CODEC, FileToIdConverter.json("beacon")) {
+        event.addListener(ResourceLocation.fromNamespaceAndPath(MOD_ID, "beacon"), new SimpleJsonResourceReloadListener<>(BeaconConfig.CODEC, FileToIdConverter.json("beacon")) {
             @Override
             protected @NotNull Map<ResourceLocation, BeaconConfig> prepare(@NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profiler) {
                 Map<ResourceLocation, BeaconConfig> configMap = new HashMap<>();

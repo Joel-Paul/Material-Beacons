@@ -1,6 +1,6 @@
 package issame.material_beacons.mixin;
 
-import issame.material_beacons.FabricDatapackLoader;
+import issame.material_beacons.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
@@ -18,7 +18,7 @@ import static issame.material_beacons.BeaconBehaviour.updateBeaconBase;
 public class BeaconBlockEntityMixin {
     @Inject(at = @At("HEAD"), method = "updateBase", cancellable = true)
     private static void updateBase(Level level, int x, int y, int z, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(updateBeaconBase(level, x, y, z, FabricDatapackLoader.getBeaconData()));
+        cir.setReturnValue(updateBeaconBase(level, x, y, z, Services.PLATFORM.getBeaconData()));
     }
 
     @Inject(at = @At("HEAD"), method = "applyEffects", cancellable = true)

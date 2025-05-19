@@ -4,9 +4,7 @@
   "package": "issame.material_beacons.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "BeaconBlockEntityMixin"
-  ],
+  "mixins": [],
   "client": [],
   "server": [],
   "injectors": {

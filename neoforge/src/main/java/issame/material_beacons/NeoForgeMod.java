@@ -8,13 +8,18 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@Mod(Constants.MOD_ID)
+import static issame.material_beacons.Constants.LOG;
+import static issame.material_beacons.Constants.MOD_ID;
+
+@Mod(MOD_ID)
 public class NeoForgeMod {
     public NeoForgeMod(IEventBus eventBus) {
+        LOG.info("Initializing Material Beacons...");
         CommonMod.init();
+        LOG.info("Material Beacons initialized!");
     }
 
-    @EventBusSubscriber(modid = Constants.MOD_ID)
+    @EventBusSubscriber(modid = MOD_ID)
     public static class EventHandler {
         @SubscribeEvent
         public static void disableBeaconGUI(PlayerInteractEvent.RightClickBlock event) {

@@ -12,8 +12,9 @@ public class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
         LOG.info("Initializing Material Beacons...");
+        CommonMod.init();
         disableBeaconGUI();
-        FabricDatapackLoader.register();
+        DatapackLoader.register();
         LOG.info("Material Beacons initialized!");
     }
 

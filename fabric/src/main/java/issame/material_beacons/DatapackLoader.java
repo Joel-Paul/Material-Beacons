@@ -18,7 +18,7 @@ import java.util.Map;
 import static issame.material_beacons.Constants.LOG;
 import static issame.material_beacons.Constants.MOD_ID;
 
-public class FabricDatapackLoader {
+public class DatapackLoader {
     private static final Gson GSON = new Gson();
     private static final Map<ResourceLocation, BeaconData> beaconData = new HashMap<>();
 

@@ -1,5 +1,10 @@
 package issame.material_beacons.platform.services;
 
+import issame.material_beacons.config.BeaconData;
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.Map;
+
 public interface IPlatformHelper {
 
     /**
@@ -30,7 +35,13 @@ public interface IPlatformHelper {
      * @return The name of the environment type.
      */
     default String getEnvironmentName() {
-
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    /**
+     * Gets the beacon data from the datapack.
+     *
+     * @return A map of resource locations to beacon data.
+     */
+    Map<ResourceLocation, BeaconData> getBeaconData();
 }
