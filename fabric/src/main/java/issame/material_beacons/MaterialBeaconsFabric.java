@@ -18,8 +18,8 @@ public class MaterialBeaconsFabric implements ModInitializer {
     }
 
     private void disableBeaconGUI() {
-        UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-            if (world.getBlockState(hitResult.getBlockPos()).getBlock() == Blocks.BEACON) {
+        UseBlockCallback.EVENT.register((player, level, hand, hitResult) -> {
+            if (level.getBlockState(hitResult.getBlockPos()).getBlock() == Blocks.BEACON) {
                 return InteractionResult.FAIL;
             }
             return InteractionResult.PASS;
