@@ -1,6 +1,7 @@
+![Material Beacons Logo](common/src/main/resources/assets/material_beacons/logo.png)
 # Material Beacons
 
-A Fabric Minecraft mod that changes how beacons work depending on the material used.
+A Fabric and NeoForge Minecraft mod that changes how beacons work depending on the material used.
 Instead of beacons being built out of any valid material and then selecting an effect,
 the material used to build the beacon determines the effect.
 
@@ -19,6 +20,7 @@ mod.
 | Block     | Effect          |
 |-----------|-----------------|
 | Diamond   | Strength        |
+| Emerald   | Luck            |
 | Glass     | None            |
 | Glowstone | Night vision    |
 | Gold      | Haste           |
