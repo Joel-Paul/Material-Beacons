@@ -56,6 +56,7 @@ public class DatapackLoader {
                             BeaconData data = new BeaconData(config);
                             map.put(id, data);
                         }, HashMap::putAll));
+                LOG.info("Loaded {} beacon materials", beaconData.size());
             }
         });
 

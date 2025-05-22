@@ -41,6 +41,7 @@ public class DatapackLoader {
                         LOG.warn("Failed to load beacon data from {}!\n{}", resourceLocation, e);
                     }
                 });
+                LOG.info("Loaded {} beacon materials", beaconData.size());
             }
         });
     }
