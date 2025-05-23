@@ -27,7 +27,6 @@ permissions:
 
 jobs:
   publish:
-    if: ${{ github.event.inputs.loader == 'all' || contains(matrix.loader, github.event.inputs.loader) }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -54,9 +53,11 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build (${{ matrix.loader }})
+        if: github.event.inputs.loader == 'all' || github.event.inputs.loader == matrix.loader
         run: ./gradlew clean :${{ matrix.loader }}:build
 
       - name: Publish (${{ matrix.loader }})
+        if: github.event.inputs.loader == 'all' || github.event.inputs.loader == matrix.loader
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           curseforge-id: 1025875
