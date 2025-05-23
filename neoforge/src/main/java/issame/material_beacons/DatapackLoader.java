@@ -49,13 +49,16 @@ public class DatapackLoader {
             @Override
             protected void apply(@NotNull Map<ResourceLocation, BeaconConfig> configMap, @NotNull ResourceManager resourceManager, @NotNull ProfilerFiller profilerFiller) {
                 beaconData.clear();
-                beaconData.putAll(configMap.entrySet().stream()
-                        .collect(HashMap::new, (map, entry) -> {
-                            ResourceLocation id = entry.getKey();
-                            BeaconConfig config = entry.getValue();
-                            BeaconData data = new BeaconData(config);
-                            map.put(id, data);
-                        }, HashMap::putAll));
+                for (Map.Entry<ResourceLocation, BeaconConfig> entry : configMap.entrySet()) {
+                    ResourceLocation resourceLocation = entry.getKey();
+                    BeaconConfig config = entry.getValue();
+                    try {
+                        BeaconData data = new BeaconData(config);
+                        beaconData.put(resourceLocation, data);
+                    } catch (IllegalArgumentException e) {
+                        LOG.warn("Failed to load beacon data from {}!\n{}", resourceLocation, e);
+                    }
+                }
                 LOG.info("Loaded {} beacon materials", beaconData.size());
             }
         });
