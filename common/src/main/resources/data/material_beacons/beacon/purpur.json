@@ -1,0 +1,39 @@
+{
+  "bases": [
+    "#c:purpur_blocks"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:slow_falling",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 20
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:slow_falling",
+        "duration": 13,
+        "amplifier": 0,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:slow_falling",
+        "duration": 15,
+        "amplifier": 0,
+        "range": 40
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:slow_falling",
+        "duration": 17,
+        "amplifier": 0,
+        "range": 50
+      }
+    ]
+  ]
+}

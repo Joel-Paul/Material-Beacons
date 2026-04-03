@@ -1,32 +1,78 @@
-# MultiLoader Template
+![Material Beacons Logo](common/src/main/resources/assets/material_beacons/logo.png)
+# Material Beacons
 
-This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
+A Fabric and NeoForge Minecraft mod that changes how beacons work depending on the material used.
+Instead of beacons being built out of any valid material and then selecting an effect,
+the material used to build the beacon determines the effect.
 
-## Getting Started
+Based on the concept of 
+[Hardcore Beacons](https://wiki.btwce.com/index.php?title=Hardcore_Modes#Hardcore_Beacons)
+from the
+[Better Than Wolves](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/3117153-better-than-wolves-community-edition-v2-1-1)
+mod.
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
+## Download
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Joel-Paul/Material-Beacons/total?logo=github&label=GitHub)](https://github.com/Joel-Paul/Material-Beacons/releases/latest)
+[![Modrinth](https://img.shields.io/modrinth/dt/QLLz3XcD?logo=modrinth&label=Modrinth)](https://modrinth.com/mod/material-beacons)
+[![CurseForge](https://img.shields.io/curseforge/dt/1025875?style=flat&logo=curseforge&label=CurseForge)](https://www.curseforge.com/minecraft/mc-mods/material-beacons)
 
-1. Clone or download this repository to your computer.
-2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
-3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
-4. If your default JVM/JDK is not Java 25 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 25 JVM. You will also need to set the Project SDK to Java 25. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
-6. Assuming you were able to run the game in step 5 your workspace should now be set up.
+## Current Materials and Effects
+| Block     | Effect          |
+|-----------|-----------------|
+| Diamond   | Strength        |
+| Emerald   | Luck            |
+| Glass     | None            |
+| Glowstone | Night vision    |
+| Gold      | Haste           |
+| Honey     | Regeneration    |
+| Honeycomb | Absorption      |
+| Iron      | Resistance      |
+| Netherite | Fire Resistance |
+| Purpur    | Slow Falling    |
+| Redstone  | Speed           |
+| Slime     | Jump Boost      |
 
-### Eclipse
-While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
 
-## Development Guide
-When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+## Datapacks
+Beacon materials and effects can be added/modified using datapacks.
+The example json below creates a beacon using wool and/or clay with two tiers of effects:
+- Tier 1: Blindness and Nausea
+- Tier 2: Regeneration III
 
-Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+(`/data/[namespace]/beacon/wool_clay.json`)
+```json
+{
+  "bases": [
+    "#minecraft:wool",
+    "minecraft:clay"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:blindness",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 10
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:regeneration",
+        "duration": 17,
+        "amplifier": 3,
+        "range": 30
+      }
+    ]
+  ]
+}
+```
 
-## Removing Platforms and Loaders
-While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
-
-Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
-For example if you wanted to remove support for `forge` you would follow the following steps:
-
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
+Bases are defined as a list of block tags or block ids. Powers are a list, with each index corresponding to a tier.
+Each tier contains a list of effects. As shown in the first tier, multiple effects can be assigned to a single tier.
+Note that each tier is independent of the others, and different effects and ranges can be applied for each tier.
