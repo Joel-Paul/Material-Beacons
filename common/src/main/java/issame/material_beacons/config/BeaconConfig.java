@@ -5,7 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -42,7 +42,7 @@ public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) 
                         TagKey<Block> tag = createTag(base.substring(1));
                         return tag == null ? null : new BlockOrTag(tag);
                     } else {
-                        Block block = BuiltInRegistries.BLOCK.getValue(ResourceLocation.tryParse(base));
+                        Block block = BuiltInRegistries.BLOCK.getValue(Identifier.tryParse(base));
                         return block.defaultBlockState().is(Blocks.AIR) ? null : new BlockOrTag(block);
                     }
                 })
@@ -54,7 +54,7 @@ public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) 
         return powers.stream()
                 .map(list -> list.stream()
                         .map(config -> {
-                            MobEffect effect = BuiltInRegistries.MOB_EFFECT.getValue(ResourceLocation.tryParse(config.effect()));
+                            MobEffect effect = BuiltInRegistries.MOB_EFFECT.getValue(Identifier.tryParse(config.effect()));
                             if (effect == null || config.duration() == null || config.amplifier() == null) {
                                 LOG.warn("Null value found in powers: {}", config);
                                 return null;
@@ -87,11 +87,11 @@ public record BeaconConfig(List<String> bases, List<List<EffectConfig>> powers) 
     }
 
     private static TagKey<Block> createTag(String name) {
-        ResourceLocation resourceLocation = ResourceLocation.tryParse(name);
-        if (resourceLocation == null) {
+        Identifier identifier = Identifier.tryParse(name);
+        if (identifier == null) {
             LOG.warn("Invalid tag name: {}", name);
             return null;
         }
-        return TagKey.create(Registries.BLOCK, resourceLocation);
+        return TagKey.create(Registries.BLOCK, identifier);
     }
 }

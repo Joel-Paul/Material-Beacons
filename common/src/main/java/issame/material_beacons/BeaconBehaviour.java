@@ -3,7 +3,7 @@ package issame.material_beacons;
 import issame.material_beacons.config.BeaconData;
 import issame.material_beacons.config.BlockOrTag;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -18,7 +18,7 @@ import java.util.Map;
 import static issame.material_beacons.Constants.MAX_LAYER;
 
 public class BeaconBehaviour {
-    public static int updateBeaconBase(Level level, int x, int y, int z, Map<ResourceLocation, BeaconData> beaconData) {
+    public static int updateBeaconBase(Level level, int x, int y, int z, Map<Identifier, BeaconData> beaconData) {
         BlockPos pos = new BlockPos(x, y, z);
         Block below = level.getBlockState(pos.below()).getBlock();
         List<BeaconData> bases = matchBases(below, beaconData);
@@ -61,7 +61,7 @@ public class BeaconBehaviour {
     }
 
     @Nullable
-    private static List<BeaconData> matchBases(Block block, Map<ResourceLocation, BeaconData> beaconData) {
+    private static List<BeaconData> matchBases(Block block, Map<Identifier, BeaconData> beaconData) {
         List<BeaconData> matching = new LinkedList<>();
         for (BeaconData data : beaconData.values()) {
             for (BlockOrTag blockOrTag : data.getBases()) {

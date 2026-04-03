@@ -3,7 +3,7 @@ package issame.material_beacons.platform;
 import issame.material_beacons.DatapackLoader;
 import issame.material_beacons.config.BeaconData;
 import issame.material_beacons.platform.services.IPlatformHelper;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 
@@ -26,11 +26,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     @Override
     public boolean isDevelopmentEnvironment() {
 
-        return !FMLLoader.isProduction();
+        return !FMLLoader.getCurrent().isProduction();
     }
 
     @Override
-    public Map<ResourceLocation, BeaconData> getBeaconData() {
+    public Map<Identifier, BeaconData> getBeaconData() {
         return DatapackLoader.getBeaconData();
     }
 }

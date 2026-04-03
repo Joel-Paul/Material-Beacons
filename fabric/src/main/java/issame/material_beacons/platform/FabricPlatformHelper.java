@@ -4,7 +4,7 @@ import issame.material_beacons.DatapackLoader;
 import issame.material_beacons.config.BeaconData;
 import issame.material_beacons.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public Map<ResourceLocation, BeaconData> getBeaconData() {
+    public Map<Identifier, BeaconData> getBeaconData() {
         return DatapackLoader.getBeaconData();
     }
 }

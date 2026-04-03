@@ -1,7 +1,7 @@
 package issame.material_beacons.platform.services;
 
 import issame.material_beacons.config.BeaconData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.Map;
 
@@ -43,5 +43,5 @@ public interface IPlatformHelper {
      *
      * @return A map of resource locations to beacon data.
      */
-    Map<ResourceLocation, BeaconData> getBeaconData();
+    Map<Identifier, BeaconData> getBeaconData();
 }
