@@ -15,17 +15,7 @@ public class MaterialBeacons implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Material Beacons...");
-        disableBeaconGUI();
         DatapackLoader.register();
         LOGGER.info("Material Beacons initialized!");
-    }
-
-    private void disableBeaconGUI() {
-        UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
-            if (world.getBlockState(hitResult.getBlockPos()).getBlock() == Blocks.BEACON) {
-                return ActionResult.FAIL;
-            }
-            return ActionResult.PASS;
-        });
     }
 }

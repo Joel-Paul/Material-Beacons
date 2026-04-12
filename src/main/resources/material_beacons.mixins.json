@@ -4,7 +4,8 @@
   "package": "issame.material_beacons.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BeaconBlockEntityMixin"
+    "BeaconBlockEntityMixin",
+    "BeaconBlockMixin"
   ],
   "client": [
   ],
