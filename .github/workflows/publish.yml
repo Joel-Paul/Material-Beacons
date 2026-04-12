@@ -47,6 +47,7 @@ jobs:
 
           modrinth-id: QLLz3XcD
           modrinth-token: "${{env.MODRINTH_TOKEN}}"
+          modrinth-featured: false
 
           github-tag: "v${{env.VERSION}}"
           github-token: "${{env.GITHUB_TOKEN}}"
