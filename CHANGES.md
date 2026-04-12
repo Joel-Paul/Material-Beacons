@@ -1,2 +1,2 @@
-## v1.0.1+1.21.1
-- Update to Minecraft 1.21.1
+## v1.0.2+1.21.1
+- Backport GUI disable logic so it doesn't disable all interactions
