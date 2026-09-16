@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.1+26.2
+- Update to Minecraft 26.2
+
 ## v1.0.1+26.1
 - Update to Minecraft 26.1
 
