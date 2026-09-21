@@ -24,7 +24,7 @@ public class CommonMod {
     public static ResourceManagerReloadListener getReloadListener(Map<Identifier, BeaconData> beaconData) {
         return resourceManager -> {
             beaconData.clear();
-            resourceManager.listResources("beacon", identifier -> identifier.getNamespace().equals(MOD_ID)).forEach((id, resource) -> {
+            resourceManager.listResources("beacon", _ -> true).forEach((id, resource) -> {
                 try (InputStream stream = resource.open()) {
                     InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
                     BeaconConfig config = GSON.fromJson(reader, BeaconConfig.class);
