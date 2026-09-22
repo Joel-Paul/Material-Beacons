@@ -1,2 +1,2 @@
-## v1.0.1+26.3
+## v1.1.0+26.3
 - Update to Minecraft 26.3
