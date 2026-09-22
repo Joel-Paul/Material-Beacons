@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "An example data pack to showcase how to modify behavior in the Material Beacons mod",
+    "min_format": 107.1,
+    "max_format": 121.0
+  }
+}

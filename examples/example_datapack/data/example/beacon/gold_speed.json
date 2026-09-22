@@ -1,0 +1,15 @@
+{
+  "bases": [
+    "minecraft:gold_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:speed",
+        "duration": 11,
+        "amplifier": 5,
+        "range": 20
+      }
+    ]
+  ]
+}

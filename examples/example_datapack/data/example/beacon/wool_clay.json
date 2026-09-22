@@ -1,0 +1,30 @@
+{
+  "bases": [
+    "#minecraft:wool",
+    "minecraft:clay"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:blindness",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 10
+      },
+      {
+        "effect": "minecraft:nausea",
+        "duration": 11,
+        "amplifier": 0,
+        "range": 30
+      }
+    ],
+    [
+      {
+        "effect": "minecraft:regeneration",
+        "duration": 17,
+        "amplifier": 3,
+        "range": 30
+      }
+    ]
+  ]
+}
