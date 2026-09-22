@@ -33,11 +33,20 @@ mod.
 | Slime     | Jump Boost      |
 
 
-## Datapacks
-Beacon materials and effects can be added/modified using datapacks.
-The example json below creates a beacon using wool and/or clay with two tiers of effects:
-- Tier 1: Blindness and Nausea
-- Tier 2: Regeneration III
+## Data Packs
+Beacon materials and effects can be added/modified using data packs.
+Examples can be found in the [example data pack](examples/example_datapack), which are also listed below.
+
+Base materials are defined as a list of block tags or block ids.
+Powers are a list, with each index corresponding to a level.
+Each level contains a list of effects. Multiple effects can be assigned to a single level.
+Note that each level is independent of the others, and different effects and ranges can be applied for each tier.
+
+### Adding a new beacon material
+
+The example JSON below creates a beacon using wool and/or clay with two levels of effects:
+- Level 1: Blindness and Nausea
+- Level 2: Regeneration III
 
 (`/data/[namespace]/beacon/wool_clay.json`)
 ```json
@@ -73,6 +82,25 @@ The example json below creates a beacon using wool and/or clay with two tiers of
 }
 ```
 
-Bases are defined as a list of block tags or block ids. Powers are a list, with each index corresponding to a tier.
-Each tier contains a list of effects. As shown in the first tier, multiple effects can be assigned to a single tier.
-Note that each tier is independent of the others, and different effects and ranges can be applied for each tier.
+### Replacing an existing beacon material
+
+The example JSON below replaces the gold beacon to instead have a single level that provides Speed V.
+
+(`/data/[namespace]/beacon/gold_speed.json`)
+```json
+{
+  "bases": [
+    "minecraft:gold_block"
+  ],
+  "powers": [
+    [
+      {
+        "effect": "minecraft:speed",
+        "duration": 11,
+        "amplifier": 5,
+        "range": 20
+      }
+    ]
+  ]
+}
+```
